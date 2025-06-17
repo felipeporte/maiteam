@@ -17,6 +17,8 @@ $athletes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <h1>Club de Patinaje Artístico</h1>
 <p>Bienvenido al sistema de gestión del club.</p>
+<p><a href="add_athlete.php">Añadir nuevo deportista</a></p>
+
 <h2>Deportistas</h2>
 <ul>
 <?php foreach ($athletes as $athlete): ?>
