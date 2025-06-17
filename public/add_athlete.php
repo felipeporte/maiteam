@@ -27,28 +27,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Añadir Deportista</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Añadir Deportista</h1>
+<body class="container py-4">
+<h1 class="mb-4">Añadir Deportista</h1>
 <?php if ($errors): ?>
-    <ul style="color:red;">
+    <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
     <?php foreach ($errors as $error): ?>
         <li><?php echo htmlspecialchars($error); ?></li>
     <?php endforeach; ?>
     </ul>
+    </div>
 <?php endif; ?>
-<form method="post">
-    <label>Nombre:
-        <input type="text" name="name" required>
-    </label><br>
-    <label>Email:
-        <input type="email" name="email">
-    </label><br>
-    <label>Fecha de Nacimiento:
-        <input type="date" name="birthdate">
-    </label><br>
-    <button type="submit">Guardar</button>
+<form method="post" class="mb-3">
+    <div class="mb-3">
+        <label class="form-label">Nombre:
+            <input class="form-control" type="text" name="name" required>
+        </label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email:
+            <input class="form-control" type="email" name="email">
+        </label>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha de Nacimiento:
+            <input class="form-control" type="date" name="birthdate">
+        </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Guardar</button>
 </form>
-<p><a href="index.php">Volver al listado</a></p>
+<p><a class="btn btn-secondary" href="index.php">Volver al listado</a></p>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

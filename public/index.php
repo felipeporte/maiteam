@@ -13,17 +13,22 @@ $athletes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Club de Patinaje Artístico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Club de Patinaje Artístico</h1>
-<p>Bienvenido al sistema de gestión del club.</p>
-<p><a href="add_athlete.php">Añadir nuevo deportista</a></p>
+<body class="container py-4">
+<h1 class="mb-4">Club de Patinaje Artístico</h1>
+<p class="mb-3">Bienvenido al sistema de gestión del club.</p>
+<p><a class="btn btn-primary" href="add_athlete.php">Añadir nuevo deportista</a></p>
 
-<h2>Deportistas</h2>
-<ul>
+<h2 class="mt-4">Deportistas</h2>
+<ul class="list-group">
 <?php foreach ($athletes as $athlete): ?>
-<li><?php echo htmlspecialchars($athlete['name']); ?> (<?php echo htmlspecialchars($athlete['email']); ?>)</li>
+<li class="list-group-item">
+    <?php echo htmlspecialchars($athlete['name']); ?>
+    (<?php echo htmlspecialchars($athlete['email']); ?>)
+</li>
 <?php endforeach; ?>
 </ul>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
