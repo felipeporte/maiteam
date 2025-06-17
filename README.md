@@ -16,4 +16,5 @@ Este proyecto es una base para gestionar un club deportivo de patinaje artístic
 4. Accede a `index.php` desde el navegador para ver la lista de deportistas.
 5. Usa `add_athlete.php` para registrar nuevos deportistas.
 
+
 Este código es solo un punto de partida; puedes extenderlo para incluir gestión de entrenadores, pagos, rendimiento, inscripciones y un área privada para deportistas o apoderados.
