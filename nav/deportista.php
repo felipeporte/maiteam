@@ -5,6 +5,7 @@ require_once __DIR__ . '/../src/db.php';
 $db = getDb();
 
 $errors = [];
+$openModal = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -19,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$name, $email ?: null, $birthdate ?: null]);
         header('Location: deportista.php');
         exit;
+    } else {
+        $openModal = true;
     }
 }
 
@@ -53,34 +56,41 @@ include './../includes/nav.php';
             </table>
         </div>
         <div class="add-athlete-form">
-            <h2>Añadir Deportista</h2>
-            <?php if ($errors): ?>
-            <div class="alert alert-danger" role="alert">
-                <ul class="mb-0">
-                    <?php foreach ($errors as $error): ?>
-                    <li><?php echo htmlspecialchars($error); ?></li>
-                    <?php endforeach; ?>
-                </ul>
+            <button id="openModal" class="btn btn-primary mb-3">Añadir Deportista</button>
+        </div>
+
+        <div id="athleteModal" class="simple-modal <?php echo $openModal ? 'show' : ''; ?>">
+            <div class="modal-content">
+                <button type="button" class="btn-close" id="closeModal"></button>
+                <h2>Añadir Deportista</h2>
+                <?php if ($errors): ?>
+                <div class="alert alert-danger" role="alert">
+                    <ul class="mb-0">
+                        <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <?php endif; ?>
+                <form method="post" class="mb-3">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre:
+                            <input class="form-control" type="text" name="name" required>
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email:
+                            <input class="form-control" type="email" name="email">
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de Nacimiento:
+                            <input class="form-control" type="date" name="birthdate">
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </form>
             </div>
-            <?php endif; ?>
-            <form method="post" class="mb-3">
-                <div class="mb-3">
-                    <label class="form-label">Nombre:
-                        <input class="form-control" type="text" name="name" required>
-                    </label>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email:
-                        <input class="form-control" type="email" name="email">
-                    </label>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha de Nacimiento:
-                        <input class="form-control" type="date" name="birthdate">
-                    </label>
-                </div>
-                <button class="btn btn-primary" type="submit">Guardar</button>
-            </form>
         </div>
     </div>
     <div class="right-content">
@@ -94,5 +104,24 @@ include './../includes/nav.php';
         </div>
     </div>
 </section>
+
+<script>
+  (function() {
+    const modal = document.getElementById('athleteModal');
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    if(openBtn){
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('show');
+      });
+    }
+    if(closeBtn){
+      closeBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+      });
+    }
+  })();
+</script>
 
 <?php include './../includes/footer.php'; ?>
