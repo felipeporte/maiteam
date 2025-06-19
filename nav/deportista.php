@@ -1,85 +1,98 @@
 <?php
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../src/db.php';
+
+$db = getDb();
+
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $birthdate = $_POST['birthdate'] ?? null;
+
+    if ($name === '') {
+        $errors[] = 'El nombre es obligatorio';
+    }
+
+    if (!$errors) {
+        $stmt = $db->prepare('INSERT INTO athletes (name, email, birthdate) VALUES (?, ?, ?)');
+        $stmt->execute([$name, $email ?: null, $birthdate ?: null]);
+        header('Location: deportista.php');
+        exit;
+    }
+}
+
+$stmt = $db->query('SELECT id, name, email FROM athletes ORDER BY id DESC');
+$athletes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 include './../includes/header.php';
 include './../includes/nav.php';
 ?>
 
-
-  <section class="content">
-        <div class="left-content">
-            <div class="activities">
-                <h1>Tabla de ejemplo</h1>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        
-                        
-                    </tbody>
-                </table>
-            </div>
+<section class="content">
+    <div class="left-content">
+        <div class="activities">
+            <h1>Deportistas</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($athletes as $athlete): ?>
+                    <tr>
+                        <td><?php echo $athlete['id']; ?></td>
+                        <td><?php echo htmlspecialchars($athlete['name']); ?></td>
+                        <td><?php echo htmlspecialchars($athlete['email']); ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
-        <div class="right-content">
-          <div class="user-info">
+        <div class="add-athlete-form">
+            <h2>Añadir Deportista</h2>
+            <?php if ($errors): ?>
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0">
+                    <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php endif; ?>
+            <form method="post" class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label">Nombre:
+                        <input class="form-control" type="text" name="name" required>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email:
+                        <input class="form-control" type="email" name="email">
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fecha de Nacimiento:
+                        <input class="form-control" type="date" name="birthdate">
+                    </label>
+                </div>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="user-info">
             <div class="icon-container">
-              <i class="fa fa-bell nav-icon"></i>
-              <i class="fa fa-message nav-icon"></i>
+                <i class="fa fa-bell nav-icon"></i>
+                <i class="fa fa-message nav-icon"></i>
             </div>
             <h4>Maria Flores</h4>
             <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/40b7cce2-c289-4954-9be0-938479832a9c" alt="user" />
-          </div>
-
-          
-          
         </div>
-    
-           
-
+    </div>
 </section>
 
 <?php include './../includes/footer.php'; ?>
