@@ -1,0 +1,30 @@
+// Sobrescribe variables Bootstrap aquí
+$primary: #875487;
+$font-family-base: 'Segoe UI', sans-serif;
+$white: #F9F3E4;
+$pink: #F29DAB;
+$rose: #DD899E;
+$tan: #F2CDC1;
+$taupe: #D0B2AF;
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+    background:
+    linear-gradient(217deg, rgba($pink, .9), rgba($pink,0) 50%),
+    linear-gradient(107deg, rgba($rose,.9), rgba($rose,0) 70%),
+    linear-gradient(336deg, rgba($tan,.9), rgba($tan,0) 60%);
+}
+
+
+
+// Luego importa Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";

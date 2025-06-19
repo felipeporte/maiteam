@@ -1,0 +1,14 @@
+{
+  "name": "maiteam",
+  "version": "1.0.0",
+  "scripts": {
+    "build-css": "sass asset/scss/custom.scss asset/css/custom.css",
+    "watch-css": "sass --watch asset/scss/custom.scss asset/css/custom.css"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.6"
+  },
+  "devDependencies": {
+    "sass": "^1.75.0"
+  }
+}
