@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__.'/../src/db.php';
-$db = getDb();
+require_once __DIR__.'/../app/Database.php';
+$db = \App\Database::getConnection();
 $n = (int)($_GET['nivel_id']??0);
 $stmt = $db->prepare("
   SELECT DISTINCT subnivel AS nombre 
