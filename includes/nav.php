@@ -6,11 +6,11 @@
   <ul>
     <li class="nav-item <?= $actual === 'dashboard.php' ? 'active' : '' ?>">
       <b></b><b></b>
-      <a href="./../dashboard.php"><i class="fa fa-house nav-icon"></i><span class="nav-text">Home</span></a>
+      <a href="/0mai/maiteam/dashboard.php"><i class="fa fa-house nav-icon"></i><span class="nav-text">Home</span></a>
     </li>
     <li class="nav-item <?= $actual === 'finanzas.php' ? 'active' : '' ?>">
       <b></b><b></b>
-      <a href="nav/finanzas.php"><i class="fa fa-hand-holding-usd nav-icon"></i><span class="nav-text">Finanzas</span></a>
+      <a href="/0mai/maiteam/nav/finanzas.php"><i class="fa fa-hand-holding-usd nav-icon"></i><span class="nav-text">Finanzas</span></a>
     </li>
     <li class="nav-item <?= $actual === 'calendario.php' ? 'active' : '' ?>">
       <b></b><b></b>
@@ -18,11 +18,11 @@
     </li>
     <li class="nav-item <?= $actual === 'deportista.php' ? 'active' : '' ?>">
       <b></b><b></b>
-      <a href="deportista.php"><i class="fa fa-person-running nav-icon"></i><span class="nav-text">Deportista</span></a>
+      <a href="/0mai/maiteam/nav/deportista.php"><i class="fa fa-person-running nav-icon"></i><span class="nav-text">Deportista</span></a>
     </li>
     <li class="nav-item <?= $actual === 'ajustes.php' ? 'active' : '' ?>">
       <b></b><b></b>
-      <a href="ajustes.php"><i class="fa fa-sticky-note nav-icon"></i><span class="nav-text">Documentacion</span></a>
+      <a href="/0mai/maiteam/nav/ajustes.php"><i class="fa fa-sticky-note nav-icon"></i><span class="nav-text">Documentacion</span></a>
     </li>
   </ul>
 </nav>

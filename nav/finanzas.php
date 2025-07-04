@@ -4,7 +4,7 @@ include './../includes/nav.php';
 ?>
 
 
-  <section class="content">
+  <section class="content-full">
         <div class="left-content">
             <div class="activities">
                 <h1>Tabla de ejemplo</h1>
