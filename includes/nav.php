@@ -16,9 +16,9 @@
       <b></b><b></b>
       <a href="calendario.php"><i class="fa fa-calendar-check nav-icon"></i><span class="nav-text">Calendario</span></a>
     </li>
-    <li class="nav-item <?= $actual === 'deportista.php' ? 'active' : '' ?>">
+    <li class="nav-item">
       <b></b><b></b>
-      <a href="/0mai/maiteam/nav/deportista.php"><i class="fa fa-person-running nav-icon"></i><span class="nav-text">Deportista</span></a>
+      <a href="/0mai/maiteam/public/index.php?r=athletes/list"><i class="fa fa-person-running nav-icon"></i><span class="nav-text">Deportista</span></a>
     </li>
     <li class="nav-item <?= $actual === 'ajustes.php' ? 'active' : '' ?>">
       <b></b><b></b>

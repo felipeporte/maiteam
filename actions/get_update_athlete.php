@@ -3,8 +3,8 @@
 // Formulario de edición de deportista con múltiples modalidades y selects dependientes
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../src/db.php';
-$db = getDb();
+require_once __DIR__ . '/../app/Database.php';
+$db = \App\Database::getConnection();
 
 // 1) Cargar deportista
 $id = (int)($_GET['id'] ?? 0);

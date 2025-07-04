@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../app/Database.php';
 
-$db = getDb();
+$db = \App\Database::getConnection();
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

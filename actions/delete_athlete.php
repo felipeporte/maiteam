@@ -3,10 +3,10 @@
 // Elimina un deportista y devuelve JSON
 
 require_once __DIR__ . '/../config/config.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../app/Database.php';
 
 header('Content-Type: application/json');
-$db = getDb();
+$db = \App\Database::getConnection();
 
 // 1) Parámetro POST
 $id = (int)($_POST['id'] ?? 0);
