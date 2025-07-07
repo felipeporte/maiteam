@@ -31,3 +31,14 @@ CREATE TABLE IF NOT EXISTS performances (
     notes TEXT,
     FOREIGN KEY (athlete_id) REFERENCES athletes(id)
 );
+CREATE TABLE IF NOT EXISTS categorias (
+  id INT NOT NULL,
+  nombre VARCHAR(100) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE categorias
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE categorias
+  MODIFY id INT NOT NULL AUTO_INCREMENT;
+COMMIT;
