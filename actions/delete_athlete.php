@@ -16,8 +16,8 @@ if (!$id) {
     exit;
 }
 
-// 2) Ejecutar borrado (cascade eliminará deportista_modalidad)
-$stmt = $db->prepare('DELETE FROM deportistas WHERE id = ?');
+// 2) Ejecutar borrado (cascade eliminará athlete_modalidad)
+$stmt = $db->prepare('DELETE FROM athletes WHERE id = ?');
 $stmt->execute([$id]);
 
 // 3) Responder éxito

@@ -27,7 +27,7 @@ if (!$id || $name === '' || count($mods) === 0) {
 }
 
 // 2) Cargar categoría previa
-$stmt = $db->prepare('SELECT categoria_id FROM deportistas WHERE id = ?');
+$stmt = $db->prepare('SELECT categoria_id FROM athletes WHERE id = ?');
 $stmt->execute([$id]);
 $current = $stmt->fetch(PDO::FETCH_ASSOC);
 $oldCategoria = $current['categoria_id'] ?? null;
@@ -78,9 +78,9 @@ if ($oldCategoria !== null && $oldCategoria > $maxSuggested) {
     $finalCategoria = $maxSuggested;
 }
 
-// 6) Actualizar tabla deportistas
+// 6) Actualizar tabla athletes
 $stmt = $db->prepare("
-  UPDATE deportistas
+  UPDATE athletes
      SET name         = :name,
          rut          = :rut,
          email        = :email,

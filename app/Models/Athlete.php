@@ -16,12 +16,12 @@ class Athlete
 
     public function all(): array
     {
-        return $this->db->query('SELECT * FROM deportistas ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
+        return $this->db->query('SELECT * FROM athletes ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find(int $id): ?array
     {
-        $stmt = $this->db->prepare('SELECT * FROM deportistas WHERE id = ?');
+        $stmt = $this->db->prepare('SELECT * FROM athletes WHERE id = ?');
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row ?: null;
@@ -29,7 +29,7 @@ class Athlete
 
     public function create(array $data): int
     {
-        $stmt = $this->db->prepare('INSERT INTO deportistas (name, rut, email, birthdate) VALUES (?,?,?,?)');
+        $stmt = $this->db->prepare('INSERT INTO athletes (name, rut, email, birthdate) VALUES (?,?,?,?)');
         $stmt->execute([
             $data['name'],
             $data['rut'] ?? null,
@@ -41,7 +41,7 @@ class Athlete
 
     public function update(int $id, array $data): void
     {
-        $stmt = $this->db->prepare('UPDATE deportistas SET name=?, rut=?, email=?, birthdate=? WHERE id=?');
+        $stmt = $this->db->prepare('UPDATE athletes SET name=?, rut=?, email=?, birthdate=? WHERE id=?');
         $stmt->execute([
             $data['name'],
             $data['rut'] ?? null,
@@ -53,7 +53,7 @@ class Athlete
 
     public function delete(int $id): void
     {
-        $stmt = $this->db->prepare('DELETE FROM deportistas WHERE id=?');
+        $stmt = $this->db->prepare('DELETE FROM athletes WHERE id=?');
         $stmt->execute([$id]);
     }
 
@@ -108,7 +108,7 @@ class Athlete
         }
 
         // Categoría previa
-        $stmt = $this->db->prepare('SELECT categoria_id FROM deportistas WHERE id = ?');
+        $stmt = $this->db->prepare('SELECT categoria_id FROM athletes WHERE id = ?');
         $stmt->execute([$id]);
         $current = $stmt->fetch(PDO::FETCH_ASSOC);
         $oldCategoria = $current['categoria_id'] ?? null;
@@ -146,7 +146,7 @@ class Athlete
             : $maxSuggested;
 
         // Actualizar datos del deportista
-        $stmt = $this->db->prepare('UPDATE deportistas SET name=?, rut=?, email=?, birthdate=?, categoria_id=? WHERE id=?');
+        $stmt = $this->db->prepare('UPDATE athletes SET name=?, rut=?, email=?, birthdate=?, categoria_id=? WHERE id=?');
         $stmt->execute([
             $data['name'],
             $data['rut'] ?: null,

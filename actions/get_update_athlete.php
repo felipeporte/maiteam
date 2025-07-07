@@ -8,7 +8,7 @@ $db = getDb();
 
 // 1) Cargar deportista
 $id = (int)($_GET['id'] ?? 0);
-$stmt = $db->prepare('SELECT * FROM deportistas WHERE id = ?');
+$stmt = $db->prepare('SELECT * FROM athletes WHERE id = ?');
 $stmt->execute([$id]);
 $athlete = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$athlete) {

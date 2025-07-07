@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$errors) {
-        $stmt = $db->prepare('INSERT INTO deportistas (name, email, birthdate, rut) VALUES (?, ?, ?, ?)');
+        $stmt = $db->prepare('INSERT INTO athletes (name, email, birthdate, rut) VALUES (?, ?, ?, ?)');
         $stmt->execute([$name, $email ?: null, $birthdate ?: null, $rut ?: null]);
         header('Location: deportista.php');
         exit;
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$stmt = $db->query('SELECT id, name, rut, email, birthdate FROM deportistas ORDER BY id DESC');
-$deportistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->query('SELECT id, name, rut, email, birthdate FROM athletes ORDER BY id DESC');
+$athletes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 include './../includes/header.php';
 include './../includes/nav.php';
