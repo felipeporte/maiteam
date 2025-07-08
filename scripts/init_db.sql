@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS payments (
     athlete_id INT,
     coach_id INT,
     guardian_id INT,
+    service_type VARCHAR(100),
     amount DECIMAL(10,2) NOT NULL,
     paid_at DATE,
     FOREIGN KEY (athlete_id) REFERENCES athletes(id),

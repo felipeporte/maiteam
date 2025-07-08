@@ -9,6 +9,7 @@
                 <th>Deportista</th>
                 <th>Apoderado</th>
                 <th>Coach</th>
+                <th>Tipo de Servicio</th>
                 <th>Monto</th>
                 <th>Fecha</th>
                 <th></th>
@@ -20,6 +21,7 @@
                     <td><?= htmlspecialchars($p['athlete']) ?></td>
                     <td><?= htmlspecialchars($p['guardian']) ?></td>
                     <td><?= htmlspecialchars($p['coach']) ?></td>
+                    <td><?= htmlspecialchars($p['service_type']) ?></td>
                     <td><?= number_format($p['amount'],2) ?></td>
                     <td><?= $p['paid_at'] ?></td>
                     <td>

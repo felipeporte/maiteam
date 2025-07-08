@@ -11,7 +11,7 @@
                 <select name="athlete_id" class="form-control">
                     <option value="">--Selecciona--</option>
                     <?php foreach ($athletes as $a): ?>
-                        <option value="<?= $a['id'] ?>" <?= $a['id']==($payment['athlete_id']??'') ? 'selected' : '' ?>><?= htmlspecialchars($a['name']) ?></option>
+                        <option value="<?= $a['id'] ?>" <?= $a['id'] == ($payment['athlete_id'] ?? '') ? 'selected' : '' ?>><?= htmlspecialchars($a['name']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </label>
@@ -21,7 +21,7 @@
                 <select name="guardian_id" class="form-control">
                     <option value="">--Selecciona--</option>
                     <?php foreach ($guardians as $g): ?>
-                        <option value="<?= $g['id'] ?>" <?= $g['id']==($payment['guardian_id']??'') ? 'selected' : '' ?>><?= htmlspecialchars($g['name']) ?></option>
+                        <option value="<?= $g['id'] ?>" <?= $g['id'] == ($payment['guardian_id'] ?? '') ? 'selected' : '' ?>><?= htmlspecialchars($g['name']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </label>
@@ -31,9 +31,14 @@
                 <select name="coach_id" class="form-control">
                     <option value="">--Selecciona--</option>
                     <?php foreach ($coaches as $c): ?>
-                        <option value="<?= $c['id'] ?>" <?= $c['id']==($payment['coach_id']??'') ? 'selected' : '' ?>><?= htmlspecialchars($c['name']) ?></option>
+                        <option value="<?= $c['id'] ?>" <?= $c['id'] == ($payment['coach_id'] ?? '') ? 'selected' : '' ?>><?= htmlspecialchars($c['name']) ?></option>
                     <?php endforeach; ?>
                 </select>
+            </label>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tipo de Servicio:
+                <input class="form-control" type="text" name="service_type" value="<?= htmlspecialchars($payment['service_type'] ?? '') ?>">
             </label>
         </div>
         <div class="mb-3">

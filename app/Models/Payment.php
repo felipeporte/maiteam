@@ -15,7 +15,7 @@ class Payment
 
     public function all(): array
     {
-        $sql = 'SELECT p.id, p.amount, p.paid_at,
+        $sql = 'SELECT p.id, p.amount, p.paid_at,p.service_type,
                        a.name AS athlete, g.name AS guardian, c.name AS coach
                 FROM payments p
                 LEFT JOIN athletes a ON a.id = p.athlete_id
@@ -35,11 +35,12 @@ class Payment
 
     public function create(array $data): int
     {
-        $stmt = $this->db->prepare('INSERT INTO payments (athlete_id, coach_id, guardian_id, amount, paid_at) VALUES (?,?,?,?,?)');
+        $stmt = $this->db->prepare('INSERT INTO payments (athlete_id, coach_id, guardian_id, service_type, amount, paid_at) VALUES (?,?,?,?,?,?)');
         $stmt->execute([
             $data['athlete_id'] ?: null,
             $data['coach_id'] ?: null,
             $data['guardian_id'] ?: null,
+            $data['service_type'] ?: null,
             $data['amount'],
             $data['paid_at'] ?? null
         ]);
@@ -48,11 +49,12 @@ class Payment
 
     public function update(int $id, array $data): void
     {
-        $stmt = $this->db->prepare('UPDATE payments SET athlete_id=?, coach_id=?, guardian_id=?, amount=?, paid_at=? WHERE id=?');
+        $stmt = $this->db->prepare('UPDATE payments SET athlete_id=?, coach_id=?, guardian_id=?, service_type=?, amount=?, paid_at=? WHERE id=?');
         $stmt->execute([
             $data['athlete_id'] ?: null,
             $data['coach_id'] ?: null,
             $data['guardian_id'] ?: null,
+            $data['service_type'] ?: null,
             $data['amount'],
             $data['paid_at'] ?? null,
             $id
