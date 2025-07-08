@@ -16,12 +16,35 @@ class Athlete
 
     public function all(): array
     {
-        return $this->db->query('SELECT * FROM athletes ORDER BY id DESC')->fetchAll(PDO::FETCH_ASSOC);
+       $sql = 'SELECT a.*, tt.name AS training_type
+               FROM athletes a
+               LEFT JOIN athlete_training at ON a.id = at.athlete_id
+               LEFT JOIN training_types tt ON a.training_type_id = tt.id
+               ORDER BY a.id DESC';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find(int $id): ?array
     {
-        $stmt = $this->db->prepare('SELECT * FROM athletes WHERE id = ?');
+        $sql = 'SELECT a.*, tt.name AS training_type
+               FROM athletes a
+               LEFT JOIN athlete_training at ON a.id = at.athlete_id
+               LEFT JOIN training_types tt ON a.training_type_id = tt.id
+               WHERE a.id = ?';
+        $stmt = $this->db->prepare($sql);
+        // Ejecutar la consulta con el ID del deportista
+        // y obtener el resultado como un array asociativo
+        // Si no se encuentra el deportista, retornar null
+        // Si se encuentra, retornar el array asociativo con los datos del deportista
+        // y el nombre del tipo de entrenamiento asociado
+        // Si no hay tipo de entrenamiento, el campo será null
+        // Retornar null si no se encuentra el deportista
+        // Retornar el array asociativo con los datos del deportista
+        // y el nombre del tipo de entrenamiento asociado
+        // Retornar el array asociativo con los datos del deportista
+        // y el nombre del tipo de entrenamiento asociado
+        // Retornar null si no se encuentra el deportista 
+
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row ?: null;
@@ -100,7 +123,7 @@ class Athlete
     /**
      * Crear o actualizar un deportista junto con su ficha (modalidades y categoría)
      */
-    public function saveFicha(?int $id, array $data, array $mods, array $lvls, array $subs): int
+    public function saveFicha(?int $id, array $data, array $mods, array $lvls, array $subs, ?int $trainingTypeId): int
     {
         // Si no existe ID creamos primero el deportista
         if (!$id) {
@@ -167,6 +190,13 @@ class Athlete
             if ($mod && $niv) {
                 $insert->execute([$id, $mod, $niv, $sub]);
             }
+        }
+        // Actualizar tipo de entrenamiento
+        $this->db->prepare('DELETE FROM athlete_training WHERE athlete_id = ?')
+            ->execute([$id]);
+        if ($trainingTypeId) {
+            $stmtTT = $this->db->prepare('INSERT INTO athlete_training (athlete_id, training_type_id) VALUES (?, ?)');
+            $stmtTT->execute([$id, $trainingTypeId]);
         }
 
         return $id;

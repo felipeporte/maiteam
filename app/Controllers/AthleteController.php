@@ -2,14 +2,18 @@
 namespace App\Controllers;
 
 use App\Models\Athlete;
+use App\Models\TrainingType;   
 
 class AthleteController
 {
     private Athlete $model;
+    private TrainingType $types;
 
     public function __construct()
     {
         $this->model = new Athlete();
+        $this->types = new TrainingType();
+
     }
 
     public function list(): void
@@ -21,12 +25,13 @@ class AthleteController
     public function form(): void
     {
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-        $athlete    = $id ? $this->model->find($id) : ['name'=>'','rut'=>'','email'=>'','birthdate'=>''];
+        $athlete    = $id ? $this->model->find($id) : ['name'=>'','rut'=>'','email'=>'','birthdate'=>'','training_type_id'=>null];
         $relations  = $id ? $this->model->getRelations($id) : [];
         if (!$relations) {
             $relations = [['modalidad_id'=>null,'nivel_id'=>null,'subnivel'=>null]];
         }
         $modalidades = $this->model->getModalidades();
+        $trainingTypes = $this->types->all();
         $levelsList  = [];
         $subsList    = [];
         foreach ($relations as $rel) {
@@ -48,8 +53,8 @@ class AthleteController
             'email'     => trim($_POST['email'] ?? ''),
             'birthdate' => $_POST['birthdate'] ?? null,
         ];
-
-        $this->model->saveFicha($id ?: null, $data, $mods, $lvls, $subs);
+        $trainingTypesId = isset($_POST['training_type_id']) ? (int)$_POST['training_type_id'] : null;
+        $this->model->saveFicha($id ?: null, $data, $mods, $lvls, $subs, $trainingTypesId);
         header('Location: ?r=athletes/list');
     }
 

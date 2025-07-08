@@ -51,4 +51,10 @@ class ClubDueController
         }
         header('Location: ?r=club_dues/list');
     }
+
+    public function report(): void
+    {
+        $report = $this->model->sumaryByGuardian();
+        require __DIR__ . '/../Views/club_dues/report.php';
+    }
 }

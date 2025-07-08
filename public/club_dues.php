@@ -22,6 +22,9 @@ switch ($route) {
     case 'club_dues/delete':
         $controller->delete();
         break;
+    case 'club_dues/report':
+        $controller->report();
+        break;
     default:
         http_response_code(404);
         echo 'Ruta no encontrada';

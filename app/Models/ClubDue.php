@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Database;
@@ -63,5 +64,16 @@ class ClubDue
     public function guardians(): array
     {
         return $this->db->query('SELECT id, name FROM guardians ORDER BY name')->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function sumaryByGuardian(): array
+    {
+        $sql = 'SELECT g.name AS guardian,
+                        COALESCE(SUM(CASE WHEN cd.paid_at IS NULL THEN cd.amount END), 0) AS pending
+                FROM guardians g
+                LEFT JOIN club_dues cd ON g.id = cd.guardian_id AND cd.paid_at IS NULL
+                GROUP BY g.id
+                ORDER BY g.name';
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 }

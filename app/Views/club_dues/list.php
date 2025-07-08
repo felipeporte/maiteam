@@ -2,7 +2,10 @@
 <?php include __DIR__ . '/../../../includes/nav.php'; ?>
 <div class="container py-4">
     <h1 class="mb-3">Cuotas del Club</h1>
-    <p><a class="btn btn-primary" href="?r=club_dues/form">Registrar cuota</a></p>
+    <p>
+        <a class="btn btn-primary" href="?r=club_dues/form">Nueva cuota</a>
+        <a class="btn btn-info" href="?r=club_dues/report">Reporte de deuda</a>
+    </p>
     <table class="table">
         <thead>
             <tr>

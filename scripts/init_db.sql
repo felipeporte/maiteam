@@ -70,3 +70,15 @@ ALTER TABLE categorias
 ALTER TABLE categorias
   MODIFY id INT NOT NULL AUTO_INCREMENT;
 COMMIT;
+CREATE TABLE IF NOT EXISTS training_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS athlete_training (
+    athlete_id INT NOT NULL,
+    training_type_id INT NOT NULL,
+    PRIMARY KEY (athlete_id, training_type_id),
+    FOREIGN KEY (athlete_id) REFERENCES athletes(id),
+    FOREIGN KEY (training_type_id) REFERENCES training_types(id)
+);

@@ -25,54 +25,67 @@
             <label class="form-label">Fecha de Nacimiento:
                 <input class="form-control" type="date" name="birthdate" value="<?= htmlspecialchars($athlete['birthdate'] ?? '') ?>">
             </label>
-        </div>
-          <hr>
-        <h4>Modalidades</h4>
-        <div id="modalidadesContainer">
-            <?php foreach ($relations as $i => $rel): ?>
-                <?php $levels = $levelsList[$i] ?? []; ?>
-                <?php $subs   = $subsList[$i] ?? []; ?>
-                <div class="modalidad-group mb-3 d-flex align-items-end">
-                    <div class="me-2 flex-grow-1">
-                        <label>Modalidad:
-                            <select name="modalidad_id[]" class="form-control modalidadSelect" required>
-                                <option value="">--Selecciona--</option>
-                                <?php foreach ($modalidades as $m): ?>
-                                    <option value="<?= $m['id'] ?>" <?= $m['id']==$rel['modalidad_id'] ? 'selected' : '' ?>><?= htmlspecialchars($m['nombre']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="me-2 flex-grow-1">
-                        <label>Nivel:
-                            <select name="nivel_id[]" class="form-control nivelSelect" required>
-                                <option value="">--Selecciona--</option>
-                                <?php foreach ($levels as $lvl): ?>
-                                    <option value="<?= $lvl['id'] ?>" <?= $lvl['id']==$rel['nivel_id'] ? 'selected' : '' ?>><?= htmlspecialchars($lvl['nombre']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="me-2 flex-grow-1">
-                        <label>Subnivel:
-                            <select name="subnivel[]" class="form-control subnivelSelect">
-                                <option value="">— sin subnivel —</option>
-                                <?php foreach ($subs as $s): ?>
-                                    <option value="<?= htmlspecialchars($s) ?>" <?= $s===$rel['subnivel'] ? 'selected' : '' ?>><?= htmlspecialchars($s) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                    </div>
-                    <?php if ($i > 0): ?>
-                        <button type="button" class="btn btn-danger btn-sm removeGroup">✕</button>
-                    <?php endif; ?>
+            <div>
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Entrenamiento:
+                        <select name="training_type_id" class="form-control" required>
+                            <option value="">--Selecciona--</option>
+                            <?php foreach ($trainingTypes as $tt): ?>
+                                <option value="<?= $tt['id'] ?>" <?= $tt['id'] == ($athlete['training_type_id'] ?? null) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($tt['name']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                 </div>
-            <?php endforeach; ?>
-        </div>
-        <button type="button" id="addModalidadBtn" class="btn btn-sm btn-secondary mb-3">+ Añadir modalidad</button>
+            </div>
+            <hr>
+            <h4>Modalidades</h4>
+            <div id="modalidadesContainer">
+                <?php foreach ($relations as $i => $rel): ?>
+                    <?php $levels = $levelsList[$i] ?? []; ?>
+                    <?php $subs   = $subsList[$i] ?? []; ?>
+                    <div class="modalidad-group mb-3 d-flex align-items-end">
+                        <div class="me-2 flex-grow-1">
+                            <label>Modalidad:
+                                <select name="modalidad_id[]" class="form-control modalidadSelect" required>
+                                    <option value="">--Selecciona--</option>
+                                    <?php foreach ($modalidades as $m): ?>
+                                        <option value="<?= $m['id'] ?>" <?= $m['id'] == $rel['modalidad_id'] ? 'selected' : '' ?>><?= htmlspecialchars($m['nombre']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="me-2 flex-grow-1">
+                            <label>Nivel:
+                                <select name="nivel_id[]" class="form-control nivelSelect" required>
+                                    <option value="">--Selecciona--</option>
+                                    <?php foreach ($levels as $lvl): ?>
+                                        <option value="<?= $lvl['id'] ?>" <?= $lvl['id'] == $rel['nivel_id'] ? 'selected' : '' ?>><?= htmlspecialchars($lvl['nombre']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="me-2 flex-grow-1">
+                            <label>Subnivel:
+                                <select name="subnivel[]" class="form-control subnivelSelect">
+                                    <option value="">— sin subnivel —</option>
+                                    <?php foreach ($subs as $s): ?>
+                                        <option value="<?= htmlspecialchars($s) ?>" <?= $s === $rel['subnivel'] ? 'selected' : '' ?>><?= htmlspecialchars($s) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                        </div>
+                        <?php if ($i > 0): ?>
+                            <button type="button" class="btn btn-danger btn-sm removeGroup">✕</button>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <button type="button" id="addModalidadBtn" class="btn btn-sm btn-secondary mb-3">+ Añadir modalidad</button>
 
-        <button class="btn btn-primary" type="submit">Guardar</button>
-        <a class="btn btn-secondary" href="?r=athletes/list">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a class="btn btn-secondary" href="?r=athletes/list">Cancelar</a>
     </form>
 </div>
 

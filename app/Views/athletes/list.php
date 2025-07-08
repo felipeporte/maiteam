@@ -10,6 +10,7 @@
                 <th>Nombre</th>
                 <th>Rut</th>
                 <th>Email</th>
+                <th>Tipo de Entrenamiento</th>
                 <th>Fecha Nac.</th>
                 <th></th>
             </tr>
@@ -21,6 +22,7 @@
                     <td><?= htmlspecialchars($a['name']) ?></td>
                     <td><?= htmlspecialchars($a['rut']) ?></td>
                     <td><?= htmlspecialchars($a['email']) ?></td>
+                    <td><?= htmlspecialchars($a['training_type_name'] ?? '') ?></td>
                     <td><?= $a['birthdate'] ? htmlspecialchars(date('d-m-Y', strtotime($a['birthdate']))) : '' ?></td>
                     <td>
                         <a class="btn btn-sm btn-secondary" href="?r=athletes/form&id=<?= $a['id'] ?>">Editar</a>
