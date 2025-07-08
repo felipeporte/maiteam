@@ -67,7 +67,7 @@ include './../includes/nav.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($deportistas as $athlete): ?>
+                        <?php foreach ($$athletes as $athlete): ?>
                             <tr id="athlete-<?php echo $athlete['id']; ?>">
                                 <td class="athlete-id"><?php echo htmlspecialchars($athlete['id']); ?></td>
                                 <td class="athlete-name"><?php echo htmlspecialchars($athlete['name']); ?></td>

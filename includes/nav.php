@@ -20,6 +20,10 @@
       <b></b><b></b>
       <a href="/0mai/maiteam/nav/deportista.php"><i class="fa fa-person-running nav-icon"></i><span class="nav-text">Deportista</span></a>
     </li>
+    <li class="nav-item <?= $actual === 'guardians.php' ? 'active' : '' ?>">
+      <b></b><b></b>
+      <a href="/0mai/maiteam/public/guardians.php"><i class="fa fa-users nav-icon"></i><span class="nav-text">Apoderados</span></a>
+    </li>
     <li class="nav-item <?= $actual === 'ajustes.php' ? 'active' : '' ?>">
       <b></b><b></b>
       <a href="/0mai/maiteam/nav/ajustes.php"><i class="fa fa-sticky-note nav-icon"></i><span class="nav-text">Documentacion</span></a>
