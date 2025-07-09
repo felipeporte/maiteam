@@ -40,6 +40,10 @@
       <b></b><b></b>
       <a href="/0mai/maiteam/public/payments.php"><i class="fa fa-money-check-alt nav-icon"></i><span class="nav-text">Pagos Coach</span></a>
     </li>
+    <li class="nav-item <?= $actual === 'athlete_coach_sessions.php' ? 'active' : '' ?>">
+      <b></b><b></b>
+      <a href="/0mai/maiteam/public/athlete_coach_sessions.php"><i class="fa fa-chalkboard-user nav-icon"></i><span class="nav-text">Sesiones</span></a>
+    </li>
     <li class="nav-item <?= $actual === 'ajustes.php' ? 'active' : '' ?>">
       <b></b><b></b>
       <a href="/0mai/maiteam/nav/ajustes.php"><i class="fa fa-sticky-note nav-icon"></i><span class="nav-text">Documentacion</span></a>

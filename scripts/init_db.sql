@@ -82,3 +82,14 @@ CREATE TABLE IF NOT EXISTS athlete_training (
     FOREIGN KEY (athlete_id) REFERENCES athletes(id),
     FOREIGN KEY (training_type_id) REFERENCES training_types(id)
 );
+CREATE TABLE IF NOT EXISTS athlete_coach_sessions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    athlete_id INT NOT NULL,
+    coach_id INT NOT NULL,
+    training_type_id INT,
+    session_mode ENUM('zoom','presencial','flex') NOT NULL DEFAULT 'presencial',
+    monthly_fee DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (athlete_id) REFERENCES athletes(id),
+    FOREIGN KEY (coach_id) REFERENCES coaches(id),
+    FOREIGN KEY (training_type_id) REFERENCES training_types(id)
+);

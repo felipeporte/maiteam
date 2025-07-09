@@ -18,18 +18,18 @@ Este proyecto es una base para gestionar un club deportivo de patinaje artístic
 
 ## Generar cuotas del club
 
-El script `scripts/generate_club_dues.php` permite registrar de forma masiva las
+El script `scripts/generar_cuota_club.php` permite registrar de forma masiva las
 cuotas mensuales para todos los apoderados. Se ejecuta desde la línea de
 comandos indicando el mes a procesar en formato `AAAA-MM`:
 
 ```bash
-php scripts/generate_club_dues.php 2024-05
+php scripts/generar_cuota_club 2024-05
 ```
 
 Si no se indica ningún argumento se utilizará el mes actual. Puedes programarlo
 con `cron` para que corra cada inicio de mes, por ejemplo:
 
 ```
-0 0 1 * * php /ruta/al/proyecto/scripts/generate_club_dues.php
+0 0 1 * * php /ruta/al/proyecto/scripts/generar_cuota_club.php
 ```
 Este código es solo un punto de partida; puedes extenderlo para incluir gestión de entrenadores, pagos, rendimiento, inscripciones y un área privada para deportistas o apoderados.
