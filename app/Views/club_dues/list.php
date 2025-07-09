@@ -20,7 +20,7 @@
             <?php foreach ($dues as $d): ?>
                 <tr>
                     <td><?= htmlspecialchars($d['guardian']) ?></td>
-                    <td><?= number_format($d['amount'],2) ?></td>
+                    <td><?= '$' . number_format($d['amount'], 0, '', '.') ?></td>
                     <td><?= $d['due_date'] ?></td>
                     <td><?= $d['paid_at'] ?></td>
                     <td>

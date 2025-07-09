@@ -11,9 +11,9 @@
         </thead>
         <tbody>
             <?php foreach ($report as $r): ?>
-                <tr class="<?= $r['pending'] > 0 ? 'table-danger' : '' ?>">
+                <tr class="<?= $r['pending'] > 0 ? 'table-info' : '' ?>">
                     <td><?= htmlspecialchars($r['guardian']) ?></td>
-                    <td><?= number_format($r['pending'], 2) ?></td>
+                    <td><?= '$' . number_format($r['pending'], 0, '', '.') ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

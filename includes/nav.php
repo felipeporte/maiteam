@@ -24,6 +24,10 @@
       <b></b><b></b>
       <a href="/0mai/maiteam/public/guardians.php"><i class="fa fa-users nav-icon"></i><span class="nav-text">Apoderados</span></a>
     </li>
+    <li class="nav-item <?= $actual === 'coaches.php' ? 'active' : '' ?>">
+      <b></b><b></b>
+      <a href="/0mai/maiteam/public/coaches.php"><i class="fa fa-user-tie nav-icon"></i><span class="nav-text">Coaches</span></a>
+    </li>
      <li class="nav-item <?= $actual === 'guardian_athlete.php' ? 'active' : '' ?>">
       <b></b><b></b>
       <a href="/0mai/maiteam/public/guardian_athlete.php"><i class="fa fa-link nav-icon"></i><span class="nav-text">Relaciones</span></a>
